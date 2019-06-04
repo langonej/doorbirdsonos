@@ -1,4 +1,4 @@
-# Project Title
+# Doorbird Sonos Integration
 
 Integrate Doorbird into Sonos.  Push Doorbird button on the doorbell and have a doorbell chime .mp3 play on Sonos in a given room or zone.
 
