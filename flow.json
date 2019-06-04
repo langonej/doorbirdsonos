@@ -1,0 +1,259 @@
+[
+    {
+        "id": "811d2ed8.3b11f",
+        "type": "http in",
+        "z": "2793c1ab.cace8e",
+        "name": "",
+        "url": "/doorbird",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 410,
+        "y": 280,
+        "wires": [
+            [
+                "514f39f0.31bca8",
+                "99f79523.0db618",
+                "aa651c37.5879b",
+                "59ed8f68.0471e",
+                "f312106a.988d3"
+            ]
+        ]
+    },
+    {
+        "id": "514f39f0.31bca8",
+        "type": "template",
+        "z": "2793c1ab.cace8e",
+        "name": "page",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<html>\n    <head></head>\n    <body>\n        <h1>Hello World!</h1>\n    </body>\n</html>",
+        "x": 570,
+        "y": 240,
+        "wires": [
+            [
+                "57894b10.5edec4"
+            ]
+        ]
+    },
+    {
+        "id": "57894b10.5edec4",
+        "type": "http response",
+        "z": "2793c1ab.cace8e",
+        "name": "",
+        "x": 710,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "5f2d0cb4.77cd34",
+        "type": "comment",
+        "z": "2793c1ab.cace8e",
+        "name": "README",
+        "info": "1) Configure DoorBird app to make an HTTP call to the URL in the [get] node (eg 192.168.1.11:1880/doorbird\n2) Schedule the HTTP call in the Doorbird app to ALWAYS make the call any time of day\n3) Configure your SONOS end points\n4) Configure your doorbill chim\n5) You can test by hitting the URL directly and it should play the doorbell chime\n6) then test with hitting the actual button on the DoorBird",
+        "x": 320,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "99f79523.0db618",
+        "type": "change",
+        "z": "2793c1ab.cace8e",
+        "name": "Set to 9",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "9",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 660,
+        "y": 360,
+        "wires": [
+            [
+                "b4b66606.4d3bc8"
+            ]
+        ]
+    },
+    {
+        "id": "b4b66606.4d3bc8",
+        "type": "openhab2-out",
+        "z": "2793c1ab.cace8e",
+        "name": "",
+        "controller": "746e9d8.640b764",
+        "itemname": "SonosJason_Volume",
+        "topic": "ItemCommand",
+        "payload": "",
+        "x": 860,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5524dad.e2c0f24",
+        "type": "openhab2-out",
+        "z": "2793c1ab.cace8e",
+        "name": "",
+        "controller": "746e9d8.640b764",
+        "itemname": "SonosJason_PlayPlaylist",
+        "topic": "ItemCommand",
+        "payload": "",
+        "x": 1070,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "aa651c37.5879b",
+        "type": "delay",
+        "z": "2793c1ab.cace8e",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 600,
+        "y": 520,
+        "wires": [
+            [
+                "4027c9de.e17818"
+            ]
+        ]
+    },
+    {
+        "id": "4027c9de.e17818",
+        "type": "change",
+        "z": "2793c1ab.cace8e",
+        "name": "Doorbell",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Doorbell",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 800,
+        "y": 520,
+        "wires": [
+            [
+                "5524dad.e2c0f24"
+            ]
+        ]
+    },
+    {
+        "id": "59ed8f68.0471e",
+        "type": "change",
+        "z": "2793c1ab.cace8e",
+        "name": "Set to OFF",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "OFF",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 670,
+        "y": 420,
+        "wires": [
+            [
+                "ab654965.b2a108"
+            ]
+        ]
+    },
+    {
+        "id": "ab654965.b2a108",
+        "type": "openhab2-out",
+        "z": "2793c1ab.cace8e",
+        "name": "",
+        "controller": "746e9d8.640b764",
+        "itemname": "SonosJason_Repeat",
+        "topic": "ItemCommand",
+        "payload": "",
+        "x": 860,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f312106a.988d3",
+        "type": "delay",
+        "z": "2793c1ab.cace8e",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 600,
+        "y": 660,
+        "wires": [
+            [
+                "1f34d136.c5d20f"
+            ]
+        ]
+    },
+    {
+        "id": "1f34d136.c5d20f",
+        "type": "openhab2-out",
+        "z": "2793c1ab.cace8e",
+        "name": "",
+        "controller": "746e9d8.640b764",
+        "itemname": "SonosJason_Stop",
+        "topic": "ItemCommand",
+        "payload": "",
+        "x": 850,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "746e9d8.640b764",
+        "type": "openhab2-controller",
+        "z": "",
+        "name": "AIAlden",
+        "protocol": "http",
+        "host": "localhost",
+        "port": "8080",
+        "path": "",
+        "username": "",
+        "password": ""
+    }
+]
